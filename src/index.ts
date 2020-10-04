@@ -34,9 +34,12 @@ const main = async () => {
 
     // POST Route
     server.post('/weatherdata', async (req: Request, res: Response) => {
-        const { timestamp, temperature, humidity, co2 } = req.body
+        const { temperature, humidity, co2 } = req.body
+
+        const timestamp = new Date().toJSON()
+
         console.log(
-            `\nReceived POST request for /weatherdata: ${timestamp}, ${temperature}, ${humidity}, ${co2}... Inserting...`
+            `\n${timestamp} - Received POST request for /weatherdata: ${temperature}, ${humidity}, ${co2}... Inserting...`
         )
 
         await WeatherData.create({
